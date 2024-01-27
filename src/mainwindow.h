@@ -16,11 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private:
-    QWidget *widget;
-    QGridLayout *layout;
-    QCalendarWidget *calendar1;
-    QCalendarWidget *calendar2;
-    QCalendarWidget *calendar3;
+    QCalendarWidget *cals[3];
 
 private slots:
     void dateChanged1(int curYear, int curMon);
