@@ -4,11 +4,6 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QCalendarWidget>
-#include <QGridLayout>
-#include <QDate>
-#include <QFont>
-#include <QTextCharFormat>
-#include <QPushButton>
 #include <QIcon>
 
 class MainWindow : public QMainWindow
@@ -17,6 +12,7 @@ class MainWindow : public QMainWindow
 
 private:
     QCalendarWidget *cals[3];
+    QIcon theIcon;
 
 private slots:
     void dateChanged1(int curYear, int curMon);
@@ -26,6 +22,5 @@ private slots:
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    static QIcon theIcon;
 };
 #endif // MAINWINDOW_H

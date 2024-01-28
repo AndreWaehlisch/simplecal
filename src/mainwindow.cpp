@@ -1,13 +1,18 @@
 #include "mainwindow.h"
 #include "holidays.h"
 
-QIcon MainWindow::theIcon; // must construct QIcon object after QMainApplication, so do just that in main.cpp
+#include <QGridLayout>
+#include <QDate>
+#include <QFont>
+#include <QTextCharFormat>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
 {
     QWidget *const widget = new QWidget(this);
     QGridLayout *const layout = new QGridLayout(widget);
     QPushButton *const nowButton = new QPushButton("+", widget);
+    theIcon = QIcon(":/icon.ico");
 
     const int curYear = QDate::currentDate().year();
     const int curMon = QDate::currentDate().month();
@@ -27,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
         QCalendarWidget *cal = new QCalendarWidget;
         cals[i_cal] = cal;
         cal->setFirstDayOfWeek(Qt::Monday);
-        cal->setSelectionMode(QCalendarWidget::SingleSelection);
+        cal->setSelectionMode(QCalendarWidget::NoSelection);
         cal->setHorizontalHeaderFormat(QCalendarWidget::ShortDayNames);
         cal->setHeaderTextFormat(headerFontFormat);
         cal->setWeekdayTextFormat(Qt::Saturday, weekendFontFormat);
