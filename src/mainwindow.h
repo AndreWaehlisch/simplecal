@@ -19,6 +19,7 @@ private slots:
     void dateChanged2(int curYear, int curMon);
     void dateChanged3(int curYear, int curMon);
     void setNow();
+    void resizeEvent(QResizeEvent *);
 
 public:
     MainWindow(QWidget *parent = nullptr);

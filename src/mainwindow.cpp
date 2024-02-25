@@ -6,9 +6,11 @@
 #include <QFont>
 #include <QTextCharFormat>
 #include <QPushButton>
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
 {
+    QSettings settings;
     QWidget *const widget = new QWidget(this);
     QGridLayout *const layout = new QGridLayout(widget);
     QPushButton *const nowButton = new QPushButton("+", widget);
@@ -71,12 +73,18 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     widget->setLayout(layout);
 
     this->setMinimumSize(1050, 250);
-    this->resize(1600, 500);
+    this->resize(settings.value("width", 1600).toInt(), settings.value("height", 500).toInt());
 
     connect(cals[0], &QCalendarWidget::currentPageChanged, this, &MainWindow::dateChanged1);
     connect(cals[1], &QCalendarWidget::currentPageChanged, this, &MainWindow::dateChanged2);
     connect(cals[2], &QCalendarWidget::currentPageChanged, this, &MainWindow::dateChanged3);
     connect(nowButton, &QAbstractButton::clicked, this, &MainWindow::setNow);
+}
+
+void MainWindow::resizeEvent(QResizeEvent *) {
+    QSettings settings;
+    settings.setValue("width", this->width());
+    settings.setValue("height", this->height());
 }
 
 void MainWindow::dateChanged1(int curYear, int curMon) {
