@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
         cal->setMinimumDate(QDate(1900, 1, 1));
         cal->setMaximumDate(QDate(3000, 1, 1));
         cal->setGridVisible(true);
+        cal->setNavigationBarVisible(true);
     }
 
     if ( curMon == 1 ) {
