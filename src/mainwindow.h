@@ -3,21 +3,22 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include <QCalendarWidget>
 #include <QIcon>
+
+#include "customcalendar.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 private:
-    QCalendarWidget *cals[3];
+    CustomCalendar *cals[3];
     QIcon theIcon;
 
 private slots:
-    void dateChanged1(int curYear, int curMon);
-    void dateChanged2(int curYear, int curMon);
-    void dateChanged3(int curYear, int curMon);
+    void dateChanged1(int, int);
+    void dateChanged2(int, int);
+    void dateChanged3(int, int);
     void setNow();
     void resizeEvent(QResizeEvent *);
 

@@ -16,8 +16,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     QPushButton *const nowButton = new QPushButton("+", widget);
     theIcon = QIcon(":/icon.ico");
 
-    const int curYear = QDate::currentDate().year();
-    const int curMon = QDate::currentDate().month();
+    const QDate today = QDate::currentDate();
+    const int curYear = today.year();
+    const int curMon = today.month();
 
     this->setWindowIcon(theIcon);
 
@@ -31,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     holidayFontFormat.setFontUnderline(true);
 
     for (int i_cal = 0; i_cal < 3; ++i_cal) {
-        QCalendarWidget *cal = new QCalendarWidget;
+        CustomCalendar *cal = new CustomCalendar;
         cals[i_cal] = cal;
         cal->setFirstDayOfWeek(Qt::Monday);
         cal->setSelectionMode(QCalendarWidget::NoSelection);
@@ -76,9 +77,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     this->setMinimumSize(1050, 250);
     this->resize(settings.value("width", 1600).toInt(), settings.value("height", 500).toInt());
 
-    connect(cals[0], &QCalendarWidget::currentPageChanged, this, &MainWindow::dateChanged1);
-    connect(cals[1], &QCalendarWidget::currentPageChanged, this, &MainWindow::dateChanged2);
-    connect(cals[2], &QCalendarWidget::currentPageChanged, this, &MainWindow::dateChanged3);
+    connect(cals[0], &CustomCalendar::currentPageChanged, this, &MainWindow::dateChanged1);
+    connect(cals[1], &CustomCalendar::currentPageChanged, this, &MainWindow::dateChanged2);
+    connect(cals[2], &CustomCalendar::currentPageChanged, this, &MainWindow::dateChanged3);
     connect(nowButton, &QAbstractButton::clicked, this, &MainWindow::setNow);
 }
 
