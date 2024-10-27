@@ -8,8 +8,10 @@
 
 class CustomCalendar : public QCalendarWidget
 {
-    private:
-        void paintCell(QPainter *, const QRect &, QDate) const;
+    using QCalendarWidget::QCalendarWidget;
+
+private:
+    void paintCell(QPainter *, const QRect &, QDate) const;
 };
 
 #endif // CUSTOMCALENDAR_H

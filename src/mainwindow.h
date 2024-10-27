@@ -1,13 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <QWidget>
 #include <QIcon>
 
 #include "customcalendar.h"
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
@@ -23,6 +22,6 @@ private slots:
     void resizeEvent(QResizeEvent *);
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow();
 };
 #endif // MAINWINDOW_H

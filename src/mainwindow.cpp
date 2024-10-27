@@ -8,12 +8,11 @@
 #include <QPushButton>
 #include <QSettings>
 
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
+MainWindow::MainWindow(): QWidget(nullptr)
 {
     QSettings settings;
-    QWidget *const widget = new QWidget(this);
-    QGridLayout *const layout = new QGridLayout(widget);
-    QPushButton *const nowButton = new QPushButton("+", widget);
+    QGridLayout *const layout = new QGridLayout(this);
+    QPushButton *const nowButton = new QPushButton("+", this);
     theIcon = QIcon(":/icon.ico");
 
     const QDate today = QDate::currentDate();
@@ -32,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     holidayFontFormat.setFontUnderline(true);
 
     for (int i_cal = 0; i_cal < 3; ++i_cal) {
-        CustomCalendar *cal = new CustomCalendar;
+        CustomCalendar *cal = new CustomCalendar(this);
         cals[i_cal] = cal;
         cal->setFirstDayOfWeek(Qt::Monday);
         cal->setSelectionMode(QCalendarWidget::NoSelection);
@@ -46,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
         cal->setNavigationBarVisible(true);
     }
 
-    if ( curMon == 1 ) {
+    if (curMon == 1) {
         cals[0]->setCurrentPage(curYear - 1, 12);
     } else {
         cals[0]->setCurrentPage(curYear, curMon - 1);
@@ -54,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
 
     cals[1]->setCurrentPage(curYear, curMon);
 
-    if ( curMon == 12 ) {
+    if (curMon == 12) {
         cals[2]->setCurrentPage(curYear + 1, 1);
     } else {
         cals[2]->setCurrentPage(curYear, curMon + 1);
@@ -71,11 +70,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     layout->addWidget(nowButton, 1, 1);
     layout->setHorizontalSpacing(60);
 
-    this->setCentralWidget(widget);
-    widget->setLayout(layout);
+    setLayout(layout);
 
-    this->setMinimumSize(1050, 250);
-    this->resize(settings.value("width", 1600).toInt(), settings.value("height", 500).toInt());
+    setMinimumSize(1050, 250);
+    resize(settings.value("width", 1600).toInt(), settings.value("height", 500).toInt());
 
     connect(cals[0], &CustomCalendar::currentPageChanged, this, &MainWindow::dateChanged1);
     connect(cals[1], &CustomCalendar::currentPageChanged, this, &MainWindow::dateChanged2);
@@ -83,17 +81,19 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     connect(nowButton, &QAbstractButton::clicked, this, &MainWindow::setNow);
 }
 
-void MainWindow::resizeEvent(QResizeEvent *) {
+void MainWindow::resizeEvent(QResizeEvent *)
+{
     QSettings settings;
-    settings.setValue("width", this->width());
-    settings.setValue("height", this->height());
+    settings.setValue("width", width());
+    settings.setValue("height", height());
 }
 
-void MainWindow::dateChanged1(int curYear, int curMon) {
-    if ( curMon == 11 ) {
+void MainWindow::dateChanged1(int curYear, int curMon)
+{
+    if (curMon == 11) {
         cals[1]->setCurrentPage(curYear, 12);
         cals[2]->setCurrentPage(curYear + 1, 1);
-    } else if ( curMon == 12 ) {
+    } else if (curMon == 12) {
         cals[1]->setCurrentPage(curYear + 1, 1);
         cals[2]->setCurrentPage(curYear + 1, 2);
     } else {
@@ -102,11 +102,12 @@ void MainWindow::dateChanged1(int curYear, int curMon) {
     }
 }
 
-void MainWindow::dateChanged2(int curYear, int curMon) {
-    if ( curMon == 1 ) {
+void MainWindow::dateChanged2(int curYear, int curMon)
+{
+    if (curMon == 1) {
         cals[0]->setCurrentPage(curYear - 1, 12);
         cals[2]->setCurrentPage(curYear, 2);
-    } else if ( curMon == 12 ) {
+    } else if (curMon == 12) {
         cals[0]->setCurrentPage(curYear, 11);
         cals[2]->setCurrentPage(curYear + 1, 1);
     } else {
@@ -115,11 +116,12 @@ void MainWindow::dateChanged2(int curYear, int curMon) {
     }
 }
 
-void MainWindow::dateChanged3(int curYear, int curMon) {
-    if ( curMon == 1 ) {
+void MainWindow::dateChanged3(int curYear, int curMon)
+{
+    if (curMon == 1) {
         cals[1]->setCurrentPage(curYear - 1, 12);
         cals[0]->setCurrentPage(curYear - 1, 11);
-    } else if ( curMon == 2 ) {
+    } else if (curMon == 2) {
         cals[1]->setCurrentPage(curYear, 1);
         cals[0]->setCurrentPage(curYear - 1, 12);
     } else {
@@ -128,7 +130,8 @@ void MainWindow::dateChanged3(int curYear, int curMon) {
     }
 }
 
-void MainWindow::setNow() {
+void MainWindow::setNow()
+{
     cals[1]->showToday();
-    this->dateChanged2(cals[1]->yearShown(), cals[1]->monthShown());
+    dateChanged2(cals[1]->yearShown(), cals[1]->monthShown());
 }
