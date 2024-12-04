@@ -23,6 +23,7 @@ QList<QDate> dateList = {
     QDate(2025, 4, 18), // Karfreitag
     QDate(2025, 4, 21), // Ostermontag
     QDate(2025, 5, 1), // Tag der Arbeit
+    QDate(2025, 5, 8), // 80. Jahrestag der Befreiung
     QDate(2025, 5, 29), // Christi Himmelfahrt
     QDate(2025, 6, 9), // Pfingstmontag
     QDate(2025, 10, 3), // Tag der dt. Einheit
