@@ -4,7 +4,7 @@
 #include <QDate>
 #include <QList>
 
-QList<QDate> dateList = {
+QList<QDate> holidayList = {
     // 2024
     QDate(2024, 1, 1), // Neujahr
     QDate(2024, 3, 8), // Frauentag

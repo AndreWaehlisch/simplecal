@@ -19,7 +19,7 @@ MainWindow::MainWindow(): QWidget(nullptr)
     const int curYear = today.year();
     const int curMon = today.month();
 
-    this->setWindowIcon(theIcon);
+    setWindowIcon(theIcon);
 
     QTextCharFormat headerFontFormat;
     headerFontFormat.setFontWeight(QFont::Bold);
@@ -60,8 +60,8 @@ MainWindow::MainWindow(): QWidget(nullptr)
     }
 
     for (int i_cal = 0; i_cal < 3; ++i_cal) {
-        for (int i = 0; i < dateList.size(); i++) {
-            cals[i_cal]->setDateTextFormat(dateList[i], holidayFontFormat);
+        foreach (QDate i_holiday, holidayList) {
+            cals[i_cal]->setDateTextFormat(i_holiday, holidayFontFormat);
         }
 
         layout->addWidget(cals[i_cal], 0, i_cal);
