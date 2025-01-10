@@ -30,7 +30,7 @@ MainWindow::MainWindow(): QWidget(nullptr)
     holidayFontFormat.setFontWeight(QFont::Bold);
     holidayFontFormat.setFontUnderline(true);
 
-    for (int i_cal = 0; i_cal < 3; ++i_cal) {
+    for (int i_cal = 0; i_cal < 3; i_cal++) {
         CustomCalendar *cal = new CustomCalendar(this);
         cals[i_cal] = cal;
         cal->setFirstDayOfWeek(Qt::Monday);
