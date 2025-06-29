@@ -4,9 +4,9 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setOrganizationName("AndreWaehlisch");
-    QCoreApplication::setApplicationName("simplecal");
-    QApplication app(argc, argv);
+    const QApplication app(argc, argv);
+    app.setOrganizationName("AndreWaehlisch");
+    app.setApplicationName("simplecal");
     MainWindow win;
     win.show();
     return app.exec();
