@@ -41,6 +41,18 @@ QList<QDate> holidayList = {
     QDate(2026, 10, 3), // Tag der dt. Einheit
     QDate(2026, 12, 25), // 1. Weinachtstag
     QDate(2026, 12, 26), // 2. Weinachtstag
+
+    // 2027
+    QDate(2027, 1, 1), // Neujahr
+    QDate(2027, 3, 8), // Frauentag
+    QDate(2027, 3, 26), // Karfreitag
+    QDate(2027, 3, 29), // Ostermontag
+    QDate(2027, 5, 1), // Tag der Arbeit
+    QDate(2027, 5, 6), // Christi Himmelfahrt
+    QDate(2027, 5, 17), // Pfingstmontag
+    QDate(2027, 10, 3), // Tag der dt. Einheit
+    QDate(2027, 12, 25), // 1. Weinachtstag
+    QDate(2027, 12, 26), // 2. Weinachtstag
 };
 
 #endif // HOLIDAYS_H
