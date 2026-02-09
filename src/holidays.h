@@ -62,6 +62,7 @@ QList<QDate> holidayList = {
     QDate(2028, 5, 1), // Tag der Arbeit
     QDate(2028, 5, 25), // Christi Himmelfahrt
     QDate(2028, 6, 5), // Pfingstmontag
+    QDate(2028, 6, 17), // 75. Jahrestag Volksaufstand DDR
     QDate(2028, 10, 3), // Tag der dt. Einheit
     QDate(2028, 12, 25), // 1. Weinachtstag
     QDate(2028, 12, 26), // 2. Weinachtstag
