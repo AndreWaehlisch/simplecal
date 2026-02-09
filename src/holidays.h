@@ -53,6 +53,42 @@ QList<QDate> holidayList = {
     QDate(2027, 10, 3), // Tag der dt. Einheit
     QDate(2027, 12, 25), // 1. Weinachtstag
     QDate(2027, 12, 26), // 2. Weinachtstag
+
+    // 2028
+    QDate(2028, 1, 1), // Neujahr
+    QDate(2028, 3, 8), // Frauentag
+    QDate(2028, 4, 14), // Karfreitag
+    QDate(2028, 4, 17), // Ostermontag
+    QDate(2028, 5, 1), // Tag der Arbeit
+    QDate(2028, 5, 25), // Christi Himmelfahrt
+    QDate(2028, 6, 5), // Pfingstmontag
+    QDate(2028, 10, 3), // Tag der dt. Einheit
+    QDate(2028, 12, 25), // 1. Weinachtstag
+    QDate(2028, 12, 26), // 2. Weinachtstag
+
+    // 2029
+    QDate(2029, 1, 1), // Neujahr
+    QDate(2029, 3, 8), // Frauentag
+    QDate(2029, 3, 30), // Karfreitag
+    QDate(2029, 4, 2), // Ostermontag
+    QDate(2029, 5, 1), // Tag der Arbeit
+    QDate(2029, 5, 10), // Christi Himmelfahrt
+    QDate(2029, 5, 21), // Pfingstmontag
+    QDate(2029, 10, 3), // Tag der dt. Einheit
+    QDate(2029, 12, 25), // 1. Weinachtstag
+    QDate(2029, 12, 26), // 2. Weinachtstag
+
+    // 2030
+    QDate(2030, 1, 1), // Neujahr
+    QDate(2030, 3, 8), // Frauentag
+    QDate(2030, 4, 19), // Karfreitag
+    QDate(2030, 4, 22), // Ostermontag
+    QDate(2030, 5, 1), // Tag der Arbeit
+    QDate(2030, 5, 30), // Christi Himmelfahrt
+    QDate(2030, 6, 10), // Pfingstmontag
+    QDate(2030, 10, 3), // Tag der dt. Einheit
+    QDate(2030, 12, 25), // 1. Weinachtstag
+    QDate(2030, 12, 26), // 2. Weinachtstag
 };
 
 #endif // HOLIDAYS_H
