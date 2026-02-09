@@ -59,6 +59,51 @@ MainWindow::MainWindow(): QWidget(nullptr)
         cals[2]->setCurrentPage(curYear, curMon + 1);
     }
 
+    {
+        /*
+         *  add repeating holidays
+         *  for details see, for example:
+         *  https://github.com/KDE/kholidays/blob/master/holidays/plan2/holiday_de-be_de
+         *  https://en.wikipedia.org/wiki/Date_of_Easter#Anonymous_Gregorian_algorithm
+         */
+        QDate Easter, Karfreitag, Ostermontag, ChristiHimmelfahrt, Pfingstmontag;
+        int a, b, c, d, e, f, g, h, i, k, l, m, n, o;
+        for (int year = 1990; year < 2090; ++year) {
+            a = year % 19;
+            b = qFloor(year / 100.);
+            c = year % 100;
+            d = qFloor(b / 4.);
+            e = b % 4;
+            f = qFloor((b + 8) / 25.);
+            g = qFloor((b - f + 1) / 3.);
+            h = (19 * a + b - d - g + 15) % 30;
+            i = qFloor(c / 4.);
+            k = c % 4;
+            l = (32 + 2 * e + 2 * i - h - k) % 7;
+            m = qFloor((a + 11 * h + 22 * l) / 451.);
+            n = qFloor((h + l - 7 * m + 114) / 31.);
+            o = (h + l - 7 * m + 114) % 31;
+            Easter = QDate(year, n, o + 1);
+            Karfreitag = Easter.addDays(-2);
+            Ostermontag = Easter.addDays(1);
+            ChristiHimmelfahrt = Easter.addDays(39);
+            Pfingstmontag = Easter.addDays(50);
+
+            holidayList.append(QDate(year, 1, 1)); // Neujahr
+            if (year >= 2019) {
+                holidayList.append(QDate(year, 3, 8)); // Frauentag
+            }
+            holidayList.append(Karfreitag);
+            holidayList.append(Ostermontag);
+            holidayList.append(QDate(year, 5, 1)); // Tag der Arbeit
+            holidayList.append(ChristiHimmelfahrt);
+            holidayList.append(Pfingstmontag);
+            holidayList.append(QDate(year, 10, 3)); // Tag der Deutschen Einheit
+            holidayList.append(QDate(year, 12, 25)); // 1. Weihnachtstag
+            holidayList.append(QDate(year, 12, 26)); // 2. Weihnachtstag
+        }
+    }
+
     for (int i_cal = 0; i_cal < 3; ++i_cal) {
         foreach (QDate i_holiday, holidayList) {
             cals[i_cal]->setDateTextFormat(i_holiday, holidayFontFormat);
