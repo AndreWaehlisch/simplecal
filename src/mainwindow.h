@@ -15,9 +15,9 @@ private:
     QIcon theIcon;
 
 private slots:
-    void dateChanged1(int, int);
-    void dateChanged2(int, int);
-    void dateChanged3(int, int);
+    void dateChanged1(const int, const int);
+    void dateChanged2(const int, const int);
+    void dateChanged3(const int, const int);
     void setNow();
     void resizeEvent(QResizeEvent *);
 

@@ -89,23 +89,26 @@ MainWindow::MainWindow(): QWidget(nullptr)
             ChristiHimmelfahrt = Easter.addDays(39);
             Pfingstmontag = Easter.addDays(50);
 
-            holidayList.append(QDate(year, 1, 1)); // Neujahr
+            holidayList.insert(QDate(year, 1, 1), "Neujahr");
             if (year >= 2019) {
-                holidayList.append(QDate(year, 3, 8)); // Frauentag
+                holidayList.insert(QDate(year, 3, 8), "Frauentag");
             }
-            holidayList.append(Karfreitag);
-            holidayList.append(Ostermontag);
-            holidayList.append(QDate(year, 5, 1)); // Tag der Arbeit
-            holidayList.append(ChristiHimmelfahrt);
-            holidayList.append(Pfingstmontag);
-            holidayList.append(QDate(year, 10, 3)); // Tag der Deutschen Einheit
-            holidayList.append(QDate(year, 12, 25)); // 1. Weihnachtstag
-            holidayList.append(QDate(year, 12, 26)); // 2. Weihnachtstag
+            holidayList.insert(Karfreitag, "Karfreitag");
+            holidayList.insert(Ostermontag, "Ostermontag");
+            holidayList.insert(QDate(year, 5, 1), "Tag der Arbeit");
+            holidayList.insert(ChristiHimmelfahrt, "Christi Himmelfahrt");
+            holidayList.insert(Pfingstmontag, "Pfingstmontag");
+            holidayList.insert(QDate(year, 10, 3), "Tag der Deutschen Einheit");
+            holidayList.insert(QDate(year, 12, 25), "1. Weihnachtstag");
+            holidayList.insert(QDate(year, 12, 26), "2. Weihnachtstag");
         }
     }
 
     for (int i_cal = 0; i_cal < 3; ++i_cal) {
-        foreach (QDate i_holiday, holidayList) {
+        for (auto it = holidayList.cbegin(); it != holidayList.cend(); ++it) {
+            const QDate i_holiday = it.key();
+            const QString i_holidayname = it.value();
+            holidayFontFormat.setToolTip(i_holidayname);
             cals[i_cal]->setDateTextFormat(i_holiday, holidayFontFormat);
         }
 
@@ -133,7 +136,7 @@ void MainWindow::resizeEvent(QResizeEvent *)
     settings.setValue("height", height());
 }
 
-void MainWindow::dateChanged1(int curYear, int curMon)
+void MainWindow::dateChanged1(const int curYear, const int curMon)
 {
     if (curMon == 11) {
         cals[1]->setCurrentPage(curYear, 12);
@@ -147,7 +150,7 @@ void MainWindow::dateChanged1(int curYear, int curMon)
     }
 }
 
-void MainWindow::dateChanged2(int curYear, int curMon)
+void MainWindow::dateChanged2(const int curYear, const int curMon)
 {
     if (curMon == 1) {
         cals[0]->setCurrentPage(curYear - 1, 12);
@@ -161,7 +164,7 @@ void MainWindow::dateChanged2(int curYear, int curMon)
     }
 }
 
-void MainWindow::dateChanged3(int curYear, int curMon)
+void MainWindow::dateChanged3(const int curYear, const int curMon)
 {
     if (curMon == 1) {
         cals[1]->setCurrentPage(curYear - 1, 12);
