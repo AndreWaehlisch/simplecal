@@ -40,7 +40,7 @@ MainWindow::MainWindow(): QWidget(nullptr)
         cal->setWeekdayTextFormat(Qt::Saturday, weekendFontFormat);
         cal->setWeekdayTextFormat(Qt::Sunday, weekendFontFormat);
         cal->setMinimumDate(QDate(1900, 1, 1));
-        cal->setMaximumDate(QDate(3000, 1, 1));
+        cal->setMaximumDate(QDate(3000, 12, 31));
         cal->setGridVisible(true);
         cal->setNavigationBarVisible(true);
     }

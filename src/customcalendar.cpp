@@ -4,6 +4,8 @@
 
 void CustomCalendar::paintCell(QPainter *painter, const QRect &rect, QDate date) const
 {
+    // highlight current date
+    // the standard setForeground() approach (e.g. used in mainwindow.cpp for holidays) gets overwritten by QCalendarWidget's internals when the day that is shown is a adjacent-month day, that is not within the currently shown month
     if (date == QDate::currentDate()) {
         QFont font = painter->font();
         font.setBold(true);
