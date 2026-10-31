@@ -1,12 +1,12 @@
-#include "mainwindow.h"
-#include "holidays.h"
-
 #include <QGridLayout>
 #include <QDate>
 #include <QFont>
 #include <QTextCharFormat>
 #include <QPushButton>
 #include <QSettings>
+
+#include "mainwindow.h"
+#include "holidays.h"
 
 MainWindow::MainWindow(): QWidget(nullptr)
 {
