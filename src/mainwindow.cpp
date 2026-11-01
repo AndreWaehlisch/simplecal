@@ -1,16 +1,28 @@
 #include <QGridLayout>
 #include <QDate>
 #include <QFont>
+#include <QString>
+#include <QMap>
 #include <QTextCharFormat>
 #include <QPushButton>
-#include <QSettings>
 
 #include "mainwindow.h"
-#include "holidays.h"
+
+/*
+ *  add special/one-off holidays here - see, for example: https://github.com/KDE/kholidays/blob/master/holidays/plan2/holiday_de-be_de
+ *  recurring holidays are added in mainwindow.cpp
+ */
+namespace
+{
+QMap<QDate, QString> holidayList = {
+    {QDate(2020, 5, 8), "75. Jahrestag der Befreiung"},
+    {QDate(2025, 5, 8), "80. Jahrestag der Befreiung"},
+    {QDate(2028, 6, 17), "75. Jahrestag Volksaufstand DDR"},
+};
+}
 
 MainWindow::MainWindow(): QWidget(nullptr)
 {
-    QSettings settings;
     QGridLayout *const layout = new QGridLayout(this);
     QPushButton *const nowButton = new QPushButton("+", this);
     theIcon = QIcon(":/icon.ico");
@@ -121,7 +133,7 @@ MainWindow::MainWindow(): QWidget(nullptr)
     setLayout(layout);
 
     setMinimumSize(1050, 250);
-    resize(settings.value("width", 1600).toInt(), settings.value("height", 500).toInt());
+    resize(theSettings.value("width", 1600).toInt(), theSettings.value("height", 500).toInt());
 
     connect(cals[0], &CustomCalendar::currentPageChanged, this, &MainWindow::dateChanged1);
     connect(cals[1], &CustomCalendar::currentPageChanged, this, &MainWindow::dateChanged2);
@@ -131,9 +143,8 @@ MainWindow::MainWindow(): QWidget(nullptr)
 
 void MainWindow::resizeEvent(QResizeEvent *)
 {
-    QSettings settings;
-    settings.setValue("width", width());
-    settings.setValue("height", height());
+    theSettings.setValue("width", width());
+    theSettings.setValue("height", height());
 }
 
 void MainWindow::dateChanged1(const int curYear, const int curMon)

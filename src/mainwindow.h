@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QIcon>
+#include <QSettings>
 
 #include "customcalendar.h"
 
@@ -13,6 +14,7 @@ class MainWindow : public QWidget
 private:
     CustomCalendar *cals[3];
     QIcon theIcon;
+    QSettings theSettings;
 
 private slots:
     void dateChanged1(const int, const int);

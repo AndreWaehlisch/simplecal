@@ -11,7 +11,7 @@ class CustomCalendar : public QCalendarWidget
     using QCalendarWidget::QCalendarWidget;
 
 private:
-    void paintCell(QPainter *, const QRect &, QDate) const;
+    void paintCell(QPainter *, const QRect &, QDate) const override;
 };
 
 #endif // CUSTOMCALENDAR_H
